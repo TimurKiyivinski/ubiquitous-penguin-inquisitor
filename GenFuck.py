@@ -19,11 +19,17 @@ def main(args):
 
     # Generate brainfuck string
     outputString = ''
+    currentValue = 0
     for asciiChar in outputRaw:
-        for i in range(0, asciiChar):
-            outputString += '+'
-        outputString += '.[-]'
-
+        while currentValue != asciiChar:
+            if currentValue < asciiChar:
+                outputString += '+'
+                currentValue += 1
+            elif currentValue > asciiChar:
+                outputString += '-'
+                currentValue -= 1
+        outputString += '.'
+        
     # Print brainfuck string
     if setVerbose:
         print(outputString)
